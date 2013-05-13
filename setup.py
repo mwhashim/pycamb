@@ -48,7 +48,6 @@ generatePyCamb.main()
 f2py.run_main(['-m', '_pycamb', '-h', '--overwrite-signature', 'src/py_camb_wrap.pyf',
          'src/py_camb_wrap.f90', 'skip:', 'makeparameters', ':'])
 
-
 # Newer versions of f2py (from numpy >= 1.6.2) use specific f90 compile args
 int_version = int(npversion.replace('.', ''))
 if int_version > 161:
