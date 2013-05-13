@@ -3,3 +3,14 @@ html/
 .project
 
 .pydevproject
+
+build
+
+src
+
+*.tar.gz
+
+camb
+
+*.pyc
+*~
