@@ -14,3 +14,4 @@ camb
 
 *.pyc
 *~
+*tar.gz*
