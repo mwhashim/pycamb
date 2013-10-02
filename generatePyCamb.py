@@ -11,7 +11,7 @@ numericalParams = ['omegab', 'omegac', 'omegav', 'omegan', 'H0', 'TCMB',
                 'yhe', 'Num_Nu_massless', 'Num_Nu_massive', 'omegak',
                 'reion__redshift', 'reion__optical_depth', 'reion__fraction', "reion__delta_redshift",
                 'Scalar_initial_condition', 'scalar_index', 'scalar_amp',
-                'scalar_running', 'tensor_index', 'tensor_ratio',
+                'scalar_running', 'tensor_index', 'tensor_ratio', 'NonLinear',
                 '@lAccuracyBoost', '@lSampleBoost', '@w_lam', '@cs2_lam',
                 '@AccuracyBoost', 'transfer__kmax', 'transfer__k_per_logint',
 ]
@@ -26,7 +26,8 @@ defaultValues = {'@AccuracyBoost':1.0,
 '@w_perturb':False,
 '@cs2_lam':1.0,
 'transfer__kmax':2,
-'transfer__k_per_logint':0}
+'transfer__k_per_logint':0,
+'NonLinear':0}
 
 
 # The boolean options that the user can pass to camb.
