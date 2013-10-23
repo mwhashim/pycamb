@@ -14,6 +14,7 @@ numericalParams = ['omegab', 'omegac', 'omegav', 'omegan', 'H0', 'TCMB',
                 'scalar_running', 'tensor_index', 'tensor_ratio', 'NonLinear',
                 '@lAccuracyBoost', '@lSampleBoost', '@w_lam', '@cs2_lam',
                 '@AccuracyBoost', 'transfer__kmax', 'transfer__k_per_logint',
+                '@ThreadNum',
 ]
 
 
@@ -21,6 +22,7 @@ numericalParams = ['omegab', 'omegac', 'omegav', 'omegan', 'H0', 'TCMB',
 defaultValues = {'@AccuracyBoost':1.0,
 '@lAccuracyBoost':1.0,
 '@lSampleBoost':1.0,
+'@ThreadNum':0,
 'scalar_amp':2.1e-9,
 '@w_lam':-1.0,
 '@w_perturb':False,
