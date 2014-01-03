@@ -11,9 +11,21 @@ if '--nonstop' in sys.argv:
 else:
     from numpy import f2py
 
+# Look in sys.argv for a url to get CAMB from (we can't use the url here
+# because of licensing).
+for arg in sys.argv:
+    if arg.startswith("--get="):
+        url = arg[6:]
+
+sys.argv.remove("--get=" + url)
+
+fname = url.split("/")[-1]
+
 # Get CAMB from http://camb.info, untar and copy *.[fF]90 to src/
 # this is done by the script extract_camb.sh
-call(["bash", "extract_camb.sh"])
+call(["wget", url])
+call(["tar", "-xzvf", fname])
+call(["rm", fname])
 
 # List of all sources that must be there
 cambsources = ['camb/%s' % f for f in [
