@@ -5,6 +5,7 @@ from distutils.version import StrictVersion
 
 import generatePyCamb
 import os.path
+import os
 import sys
 from subprocess import call
 if '--nonstop' in sys.argv:
@@ -15,20 +16,17 @@ else:
 
 # Look in sys.argv for a url to get CAMB from (we can't use the url here
 # because of licensing).
-for arg in sys.argv:
-    if arg.startswith("--get="):
-        url = arg[6:]
+url = os.getenv('CAMBURL', None)
+print "*****", url
+if url is not None:
+    fname = url.split("/")[-1]
+    # Get CAMB from http://camb.info, untar and copy *.[fF]90 to src/
+    # this is done by the script extract_camb.sh
+    call(["wget", url])
+    call(["tar", "-xzvf", fname])
+    call(["rm", fname])
 
-sys.argv.remove("--get=" + url)
-
-fname = url.split("/")[-1]
-
-# Get CAMB from http://camb.info, untar and copy *.[fF]90 to src/
-# this is done by the script extract_camb.sh
-call(["wget", url])
-call(["tar", "-xzvf", fname])
-call(["rm", fname])
-
+#sys.exit()
 # List of all sources that must be there
 cambsources = ['camb/%s' % f for f in [
     'constants.f90',
@@ -92,4 +90,3 @@ setup(name="pycamb", version="0.3",
       scripts=[],
       ext_modules=[pycamb_ext]
     )
-
