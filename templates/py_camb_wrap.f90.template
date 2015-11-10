@@ -184,8 +184,8 @@ subroutine genpowerandcls(paramVec,lmax,Max_eta_k,nk_input, kh_input, nred,redsh
         P%Max_eta_k_tensor=2*lmax
         P%transfer%pk_num_redshifts = nr
         
-        P%transfer%kmax = maxk * (P%h0/100._dl)
-        P%transfer%k_per_logint = dlogk
+        !P%transfer%kmax = maxk * (P%h0/100._dl)
+        !P%transfer%k_per_logint = dlogk
         
         do i=1,nr
             P%transfer%pk_redshifts(i)=redshifts(i)

@@ -6,13 +6,30 @@ from distutils.version import StrictVersion
 import generatePyCamb
 import os.path
 import sys
+from subprocess import call
 if '--nonstop' in sys.argv:
-  sys.argv.remove('--nonstop')
-  from nonstopf2py import f2py
+    sys.argv.remove('--nonstop')
+    from nonstopf2py import f2py
 else:
-  from numpy import f2py
+    from numpy import f2py
 
+# Look in sys.argv for a url to get CAMB from (we can't use the url here
+# because of licensing).
+for arg in sys.argv:
+    if arg.startswith("--get="):
+        url = arg[6:]
 
+sys.argv.remove("--get=" + url)
+
+fname = url.split("/")[-1]
+
+# Get CAMB from http://camb.info, untar and copy *.[fF]90 to src/
+# this is done by the script extract_camb.sh
+call(["wget", url])
+call(["tar", "-xzvf", fname])
+call(["rm", fname])
+
+# List of all sources that must be there
 cambsources = ['camb/%s' % f for f in [
     'constants.f90',
     'utils.F90',
@@ -31,15 +48,18 @@ cambsources = ['camb/%s' % f for f in [
     'camb.f90',
 ]]
 
+# Check if all sources are in fact there
 for f in cambsources:
-  if not os.path.exists(f):
-    raise Exception("At least one of CAMB code file: '%s' is not found. Download and extract to camb/.  You can use teh extract_camb.sh script to help" % f)
+    if not os.path.exists(f):
+        raise Exception("At least one of CAMB code file: '%s' is not found. Download and extract to camb/" % f)
 
+# Make folder "src" unless already made
 try: os.mkdir('src')
 except: pass
 generatePyCamb.main()
 
-f2py.run_main(['-m', '_pycamb', '-h', '--overwrite-signature', 'src/py_camb_wrap.pyf', 
+# Generate .pyf wrappers
+f2py.run_main(['-m', '_pycamb', '-h', '--overwrite-signature', 'src/py_camb_wrap.pyf',
          'src/py_camb_wrap.f90', 'skip:', 'makeparameters', ':'])
 
 # Newer versions of f2py (from numpy >= 1.6.2) use specific f90 compile args
