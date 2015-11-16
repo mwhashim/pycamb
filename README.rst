@@ -35,7 +35,7 @@ top of generatePyCamb.py, there are instructions there.
 Other modifications will be a little more difficult, as the code is rather messy.
 Basically you need to write a piece of fortran code for python to output, and
 the a piece of python code for python to output, and add both to the generating
-code at the foot of the file.  Also, add your new python functions to the __all__
+code at the foot of the file.  Also, add your new python functions to the ``__all__``
 variable generated in the python header.
 
 
@@ -56,11 +56,14 @@ All of them are called in a similar way; read the documentation string for
 
 The two methods are explicitly passing the parameters when calling the functions,
 and constructing a dictionary to pass, e.g.:
+
 **method 1**::
+
     import pycamb
     T,E,B,X = pycamb.camb(2000,H0=72, scalar_index=0.95)
 
 **method 2**::
+
     params = {"H0":72.0, scalar_index:0.95}
     T,E,B,X = pycamb.camb(2000,**params)
 
@@ -73,6 +76,7 @@ The ipython module is also very useful for making interactive mode easier -
 it has a pylab mode where mathematical and plotting tools are already imported.
 
 To start most simply in interactive mode, run python at the command line and import everything from the module::
+
     from pylab import *
     from pycamb import *
     lmax=2000
