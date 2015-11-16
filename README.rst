@@ -41,7 +41,8 @@ variable generated in the python header.
 
 Usage
 -----
-The functions currently available in the code are:
+The functions currently available in the code are::
+
     pycamb.camb             #Get CMB power spectra; returns T,E,B,X
     pycamb.matter_power     #Get P(k); returns k,P(k)
     pycamb.transfers        #Get transfer functions; returns k,T_i(k,z), sigma8(z)
@@ -49,21 +50,19 @@ The functions currently available in the code are:
     pycamb.angular_diameter #Get angular diameter distance to given redshift
 
 All of them are called in a similar way; read the documentation string for
-``pycamb.camb`` to find out more, using:
-    >>> import pycamb
-    >>> help(pycamb.camb)
+``pycamb.camb`` to find out more, using::
+    import pycamb
+    help(pycamb.camb)
 
 The two methods are explicitly passing the parameters when calling the functions,
 and constructing a dictionary to pass, e.g.:
-**method 1:**
-    > python
-    >>> import pycamb
-    >>> T,E,B,X = pycamb.camb(2000,H0=72, scalar_index=0.95)
+**method 1**::
+    import pycamb
+    T,E,B,X = pycamb.camb(2000,H0=72, scalar_index=0.95)
 
-**method 2:**
-    > python
-    >>> params = {"H0":72.0, scalar_index:0.95}
-    >>> T,E,B,X = pycamb.camb(2000,**params)
+**method 2**::
+    params = {"H0":72.0, scalar_index:0.95}
+    T,E,B,X = pycamb.camb(2000,**params)
 
 
 Interactive Mode
@@ -73,22 +72,21 @@ mode you probably want to install matplotlib (pylab) to plot your results.
 The ipython module is also very useful for making interactive mode easier -
 it has a pylab mode where mathematical and plotting tools are already imported.
 
-To start most simply in interactive mode, run python at the command line and import everything from the module:
-    > python   #Or ipython
-    >>> from pylab import *
-    >>> from pycamb import *
-    >>> lmax=2000
-    >>> T,E,B,X = camb(lmax, H0=70., omegab=0.04,omegav=0.6,omegac=0.36)
-    >>> ell = arange(1,lmax)
-    >>> loglog(ell,T,label="TT")
-    >>> loglog(ell,E, label="EE")
-    >>> legend()
-    >>> show() #May not be necessary
+To start most simply in interactive mode, run python at the command line and import everything from the module::
+    from pylab import *
+    from pycamb import *
+    lmax=2000
+    T,E,B,X = camb(lmax, H0=70., omegab=0.04,omegav=0.6,omegac=0.36)
+    ell = arange(1,lmax)
+    loglog(ell,T,label="TT")
+    loglog(ell,E, label="EE")
+    legend()
+    show() #May not be necessary
 
 
 Scripts
 =======
-You can put more complex sets of commands in a script ending in .py, e.g. plot.py
+You can put more complex sets of commands in a script ending in ``.py``, e.g. ``plot.py``::
 
     import pycamb
     import pylab
@@ -105,7 +103,7 @@ You can put more complex sets of commands in a script ending in .py, e.g. plot.p
     pylab.xlim(1,2000)
     pylab.savefig("spectral_index.eps")
 
-Then run with: ``python plot.py``
+Then run with ``python plot.py``.
 
 
 Bugs & Issues
