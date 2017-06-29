@@ -86,7 +86,7 @@ setup(name="pycamb", version="0.3",
       requires=['numpy'],
       packages=[ 'pycamb' ],
       package_dir={'pycamb': 'src'},
-      data_files=[('pycamb/camb', ['camb/HighLExtrapTemplate_lenspotentialCls.dat'])],
+      data_files=[('pycamb/camb', ['CAMB-March2013/HighLExtrapTemplate_lenspotentialCls.dat'])],
       scripts=[],
       ext_modules=[pycamb_ext]
     )
