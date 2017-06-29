@@ -28,7 +28,7 @@ if url is not None:
 
 #sys.exit()
 # List of all sources that must be there
-cambsources = ['camb/%s' % f for f in [
+cambsources = ['CAMB-March2013/%s' % f for f in [
     'constants.f90',
     'utils.F90',
     'subroutines.f90',
